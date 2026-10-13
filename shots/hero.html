@@ -1,0 +1,85 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Transcript noise QA</title>
+<style>
+  :root { --plum:#401759; --magenta:#92278f; --violet:#6951e0; --cyan:#17dfdc; --ink:#1d1842; --cream:#faf8f6; --lav:#e4e2ed; --mute:#6b6684; }
+  * { box-sizing:border-box; margin:0; }
+  html,body { width:1600px; height:920px; background:var(--cream); color:var(--ink);
+    font-family: system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; overflow:hidden; }
+  .glow { position:absolute; right:-220px; top:-260px; width:900px; height:900px; border-radius:50%;
+    background:radial-gradient(circle, rgba(105,81,224,.16), rgba(146,39,143,.06) 45%, transparent 70%); }
+  .wrap { position:relative; padding:60px 72px 0; height:100%; }
+  .pill { display:inline-flex; gap:10px; align-items:center; background:var(--lav); color:var(--plum);
+    font:600 13px/1 ui-monospace,Menlo,monospace; letter-spacing:.08em; padding:9px 14px; border-radius:999px; }
+  .pill i { width:7px; height:7px; border-radius:50%; background:var(--magenta); display:block; }
+  h1 { margin-top:24px; font-size:58px; line-height:1.03; font-weight:760; letter-spacing:-.025em; color:var(--plum); }
+  .sub { margin-top:12px; font-size:25px; font-weight:520; color:var(--ink); letter-spacing:-.01em; }
+  .stage { position:absolute; left:72px; right:72px; top:268px; height:520px; display:flex; gap:28px; }
+  .left { width:880px; display:flex; flex-direction:column; gap:16px; }
+  .line { background:#fff; border:1px solid var(--lav); border-radius:16px; padding:18px 22px; box-shadow:0 10px 24px rgba(29,24,66,.05); }
+  .lab { font:600 12px/1 ui-monospace,Menlo,monospace; letter-spacing:.08em; color:var(--mute); margin-bottom:10px; }
+  .say { font-size:21px; line-height:1.4; }
+  .ok { background:rgba(23,223,220,.18); padding:1px 6px; border-radius:6px; font-weight:650; }
+  .bad { background:rgba(146,39,143,.14); color:var(--magenta); padding:1px 6px; border-radius:6px; font-weight:700; }
+  .verdicts { display:flex; gap:16px; }
+  .v { flex:1; border-radius:16px; padding:18px 22px; }
+  .v.yes { background:#fff; border:1px solid var(--lav); }
+  .v.no { background:var(--plum); color:#fff; box-shadow:0 24px 50px rgba(64,23,89,.28); }
+  .v .tag { font:700 13px/1 ui-monospace,Menlo,monospace; letter-spacing:.08em; display:inline-block; padding:7px 10px; border-radius:8px; margin-bottom:12px; }
+  .yes .tag { background:rgba(23,223,220,.22); color:#03363D; }
+  .no .tag { background:rgba(255,255,255,.14); color:#fff; }
+  .v p { font-size:17px; line-height:1.45; }
+  .no p { color:#f1ecf7; }
+  .right { flex:1; align-self:flex-start; background:#fff; border:1px solid var(--lav); border-radius:20px; padding:26px 28px;
+    box-shadow:0 30px 60px rgba(29,24,66,.10); }
+  .big { font-size:96px; font-weight:800; letter-spacing:-.04em; line-height:.9;
+    background:linear-gradient(90deg,var(--magenta),var(--violet)); -webkit-background-clip:text; color:transparent; width:max-content; }
+  .bigsub { margin-top:10px; font-size:18px; line-height:1.35; font-weight:560; }
+  .bigsub small { display:block; color:var(--mute); font-weight:500; font-size:15px; margin-top:4px; }
+  .bars { margin-top:22px; }
+  .bars .h { font:600 12px/1 ui-monospace,Menlo,monospace; letter-spacing:.08em; color:var(--mute); margin-bottom:12px; }
+  .row { display:flex; align-items:center; gap:10px; margin:7px 0; font-size:14px; }
+  .row span:first-child { width:150px; color:var(--ink); }
+  .track { flex:1; height:14px; background:var(--lav); border-radius:7px; overflow:hidden; }
+  .fill { height:100%; border-radius:7px; background:var(--violet); }
+  .row.top .fill { background:linear-gradient(90deg,var(--magenta),var(--violet)); }
+  .row b { width:44px; text-align:right; font:600 13px ui-monospace,Menlo,monospace; }
+  .foot { position:absolute; left:72px; right:72px; bottom:36px; display:flex; justify-content:space-between; font-size:14px; color:var(--mute); }
+  .foot span:last-child { font-family:ui-monospace,Menlo,monospace; color:var(--ink); }
+</style></head>
+<body>
+<div class="glow"></div>
+<div class="wrap">
+  <span class="pill"><i></i>TRANSCRIPT NOISE · LLM QA SCORING</span>
+  <h1>“Every resolved conversation, scored.”</h1>
+  <p class="sub">I checked what that score says when the transcript mishears one number.</p>
+
+  <div class="stage">
+    <div class="left">
+      <div class="line"><div class="lab">WHAT THE AGENT SAID</div>
+        <div class="say">So you were charged <span class="ok">€49.95</span> twice for one lamp, and you only want the duplicate payment back, is that right?</div></div>
+      <div class="line"><div class="lab">WHAT THE TRANSCRIPT SAYS · 10% WORD ERROR RATE</div>
+        <div class="say">So you were charged <span class="bad">€19.95</span> twice for one lamp, you only want the duplicate payment is that write?</div></div>
+      <div class="verdicts">
+        <div class="v yes"><span class="tag">CLEAN · RESOLUTION ACCURACY: YES</span>
+          <p>“The duplicate refund and the 3 to 5 working day bank timing match the policy.”</p></div>
+        <div class="v no"><span class="tag">NOISY · RESOLUTION ACCURACY: NO</span>
+          <p>“You misstated the amounts: the lamp was €49.95 and the duplicate charge was €49.95, not €19.95.”</p></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="big">43%</div>
+      <div class="bigsub">of correct resolutions marked wrong at 5% word error rate.<small>7% on clean transcripts. Noise almost never passed a bad call: the errors land on agents who got it right.</small></div>
+      <div class="bars"><div class="h">EXTRA FLIPS AT 10% WER, NET OF JUDGE SELF-NOISE</div>
+        <div class="row top"><span>Resolution</span><div class="track"><div class="fill" style="width:80%"></div></div><b>+40</b></div>
+        <div class="row"><span>Verification</span><div class="track"><div class="fill" style="width:44%"></div></div><b>+22</b></div>
+        <div class="row"><span>Understanding</span><div class="track"><div class="fill" style="width:28%"></div></div><b>+14</b></div>
+        <div class="row"><span>Opening</span><div class="track"><div class="fill" style="width:22%"></div></div><b>+11</b></div>
+        <div class="row"><span>Closing</span><div class="track"><div class="fill" style="width:12%"></div></div><b>+6</b></div>
+        <div class="row"><span>Communication</span><div class="track"><div class="fill" style="width:6%"></div></div><b>+3</b></div>
+        <div class="row"><span>Process</span><div class="track"><div class="fill" style="width:4%"></div></div><b>+2</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>24 synthetic calls · 360 judge calls (claude-haiku-5-5, $0.22) · 7-criterion scorecard · 10 tests</span><span>github.com/srikrishnavansi/transcript-noise-qa</span></div>
+</div>
+</body></html>

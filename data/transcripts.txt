@@ -1,0 +1,322 @@
+# Synthetic support calls for a made-up homeware shop, "Tidewell Home". No real company, person or order.
+# Header: "## id | scenario | fail: <criteria the agent fails>" (every other criterion passes).
+# Codes: O opening, V verification, U understanding, R resolution_accuracy, P process_compliance, C communication, L closing.
+# A trailing "#X" marks the turn that decides criterion X (gold evidence), for passes and for misses.
+
+## T01 | duplicate charge | fail: -
+A: Good morning, thank you for calling Tidewell Home, my name is Sanne. How can I help you today? #O
+C: Hi Sanne. I've been charged twice for the same order and I'm honestly quite annoyed about it.
+A: I'm sorry about that, being charged twice is really frustrating. I'll sort it out with you now. Can I take your full name and either the order number or the postcode on your account, please? #C #V
+C: Sure, it's Siobhan Visser, and the order number is 482139.
+A: Thank you, Siobhan. I can see order 482139 for a table lamp at €49.95, and yes, there are two payments of €49.95 on the same day. #V
+C: That's the one.
+A: So you were charged €49.95 twice for one lamp, and you only want the duplicate payment back, is that right? #U
+C: Exactly, I want to keep the lamp.
+A: I've refunded the duplicate payment of €49.95 today. Your bank will show it within 3 to 5 working days. #R
+C: Okay, 3 to 5 working days. That's fine.
+A: You'll also get a confirmation email in the next hour. Is there anything else I can help you with? #L
+C: No, that's everything, thanks.
+A: Thank you for calling Tidewell, Siobhan, have a lovely day. #L
+
+## T02 | damaged on arrival | fail: V C
+A: Good afternoon, Tidewell Home, you're speaking with Joost. How can I help? #O
+C: Hi, my lamp arrived with the glass shade cracked. I'm really upset, it was a birthday present.
+A: Okay. What's the order number? #C
+C: It's 517204.
+A: Right, that went to 14 Prinsengracht, 1015 AE Amsterdam, delivered on Tuesday. #V
+C: Yes, that's my address. Can I get a new one?
+A: Can you email us a photo of the cracked shade first? #P
+C: I've just sent it now.
+A: Got it, I can see the photo. So the shade is cracked and you'd like a replacement rather than a refund? #U
+C: Yes, a replacement please.
+A: A free replacement lamp is on its way and arrives in 2 to 4 working days. The lamp was €39.95, so please send the damaged one back with the free return label I'm emailing you now. #R #P
+C: Fine.
+A: You'll get the tracking link by email tomorrow. Anything else I can help with today? #L
+C: No.
+A: Thanks for calling Tidewell, goodbye. #L
+
+## T03 | late parcel | fail: U R L
+A: Good morning, Tidewell Home, my name is Lotte, how can I help you? #O
+C: Hi Lotte, my order hasn't arrived. I ordered a kettle 6 working days ago and the tracking hasn't moved since Friday.
+A: I'm sorry to hear that, waiting for a parcel that doesn't move is annoying. Can I have your full name and the order number or your postcode? #C #V
+C: Priya Jansen, postcode 3512 KL.
+A: Thank you, Priya. I can see an order for a kettle at €34.50 placed 6 working days ago. So is the kettle you received not working? #V #U
+C: No, I haven't received it at all. That's the problem.
+A: Ah, okay. Since it's been 6 days I'll send you a replacement kettle today, and you'll have it tomorrow. #R
+C: Oh, great, thank you.
+A: Okay, bye. #L
+
+## T04 | return, changed mind | fail: -
+A: Hello, thank you for calling Tidewell Home, this is Bram speaking. How can I help you? #O
+C: Hi Bram, I'd like to return a rug I bought. It doesn't match the room.
+A: Of course, I can help with that. Could I take your full name and your order number or postcode, please? #V
+C: Ahmed Bakker, order 630918.
+A: Thanks, Ahmed. I can see the wool rug at €89.00, delivered 12 days ago. So the rug is fine, it just doesn't suit the room, and you'd like a refund? #V #U
+C: Yes, that's it.
+A: That's within our 30 day return window, so that's no problem. I'll email you a free return label now. #R #P
+C: Great. And when do I get the money back?
+A: Once the rug arrives at our warehouse, the refund of €89.00 is paid within 5 working days. #R
+C: Perfect.
+A: So the label is in your inbox within the hour, and you'll get an email when we receive the rug. Is there anything else I can help with? #L
+C: No, that's all.
+A: Thanks for calling, Ahmed. Have a good day. #L
+
+## T05 | bank dispute | fail: P
+A: Good morning, Tidewell Home, my name is Femke. How can I help today? #O
+C: Hi Femke. I've opened a dispute with my bank about a payment to you, and I want to know what happens now.
+A: Thanks for letting me know, and I'm sorry you had to go to your bank over this. Can I take your full name and the order number or postcode? #C #V
+C: Mark Smit, postcode 2011 HB.
+A: Thank you, Mark. I can see a payment of €120.00 for a dining chair set. So you've disputed that payment with your bank and want to know the next step? #V #U
+C: Yes.
+A: I'll make a note on your order that you've opened a dispute. Your bank will contact you with their decision. #P
+C: Okay. So I just wait?
+A: Yes, you wait for your bank. I'll email you today to confirm the note on your order. Is there anything else I can help with? #L
+C: No, thanks.
+A: Thank you for calling Tidewell, Mark. Take care. #L
+
+## T06 | faulty under warranty | fail: O U
+A: Hello, how can I help? #O
+C: Hello. My kettle from you stopped working. It's 4 months old. The order number is 274561 and my name is Eva Mulder.
+A: Okay, Eva. Before I look it up, what's your order number? #U
+C: I just said it, 274561.
+A: Sorry, yes, 274561. And can you confirm your postcode for me? #V
+C: 5611 ZT.
+A: Thank you, that matches the account. I can see the kettle, bought 4 months ago for €45.00. It's an electrical item under the 2 year warranty, so we'll replace it free of charge. A refund isn't possible after 30 days, but the replacement covers it. #V #R
+C: That's fine, a replacement is good.
+A: I'm sorry it broke so soon, that's annoying. Can you email us a photo of the kettle and the model sticker, so we can log the fault? #C #P
+C: Yes, I'll do that tonight.
+A: Once we have the photo, the new kettle arrives in 2 to 4 working days. Anything else I can help with today? #L
+C: No, thanks.
+A: Thank you for calling Tidewell. Bye now. #L
+
+## T07 | address change after dispatch | fail: V R C
+A: Good afternoon, Tidewell Home, Ruud speaking. How can I help? #O
+C: Hi Ruud, I need to change the delivery address on my order. I've just moved and I'm really stressed about this, it's urgent.
+A: Fine. Give me the new address. #C
+C: It's 22 Lindengracht, 1015 KD Amsterdam. The order is 391827.
+A: Right, done, I've changed order 391827 to 22 Lindengracht. #V
+C: Wasn't it already sent out yesterday? I got an email saying dispatched.
+A: Yes, it was dispatched yesterday, but that doesn't matter, the courier will go to the new address. #R
+C: Oh. Okay, I hope so, I really need that sofa cover.
+A: It'll be there in 2 to 4 working days. Anything else? #L
+C: No.
+A: Thanks for calling Tidewell. Bye. #L
+
+## T08 | goodwill for late delivery | fail: P L
+A: Good morning, thank you for calling Tidewell Home, my name is Sanne. How can I help you? #O
+C: Hi, it's Tom Dekker. My order arrived 5 days late and I'd like some kind of compensation.
+A: I'm sorry it was so late, Tom, I understand that's frustrating when you're waiting in. Could you give me the order number or your postcode, so I can check the order? #C #V
+C: Order 845302.
+A: Thank you, Tom. Yes, I can see order 845302 for a bedding set, delivered 5 working days later than planned. So you'd like compensation for the late delivery, is that right? #V #U
+C: Yes, I took a day off for it.
+A: I'm putting you on hold now. #P
+A: Right, I'm back. I can add a €10 voucher to your account as goodwill for the delay. It's there now. #P #R
+C: Okay, that's something, thanks.
+A: Okay. #L
+C: Is that it then?
+A: Yes. #L
+
+## T09 | wrong item | fail: -
+A: Good afternoon, you're through to Tidewell Home, my name is Lotte. How can I help? #O
+C: Hello Lotte. I ordered grey towels and you sent me pink ones.
+A: Oh no, I'm sorry, that's not what you ordered. Let's fix it. Can I have your full name and your order number or postcode, please? #C #V
+C: Niamh de Vries, postcode 9711 LM.
+A: Thank you, Niamh. I can see the order for a grey towel set at €29.95. So the set you received is pink instead of grey, and you'd like the grey set? #V #U
+C: Yes please.
+A: Could you email us a photo of the pink set with the label, so I can log it? #P
+C: Sure, I'll send it now.
+A: Thanks, I've got it. I'm sending the grey set today, it arrives in 2 to 4 working days, and I'll email you a free return label for the pink set. #R #P
+C: Lovely.
+A: You'll get both emails within the hour. Is there anything else I can help you with? #L
+C: No, that's all.
+A: Thank you for calling Tidewell, Niamh. Enjoy the rest of your day. #L
+
+## T10 | refund status | fail: O R
+A: Tidewell. #O
+C: Hi, I sent a return back two weeks ago and I still haven't had my refund. I'm getting a bit worried.
+A: I understand, it's worrying when money is outstanding. Let me check. Can I have your full name and order number or postcode? #C #V
+C: Ahmed Okafor, order 152983.
+A: Thank you, Ahmed. I can see the return of a mirror at €75.00. It arrived at our warehouse 3 working days ago. So you're asking when the €75.00 comes back? #V #U
+C: Yes.
+A: Refunds take 10 to 14 working days after we receive the item, so it'll be another week or two. #R
+C: That long? Okay.
+A: You'll get an email the day it's paid. Is there anything else I can help you with? #L
+C: No, thank you.
+A: Thanks for calling, Ahmed, have a good afternoon. #L
+
+## T11 | missing part | fail: R C L
+A: Good morning, Tidewell Home, my name is Bram. How can I help you? #O
+C: Hi Bram. My bookcase arrived without the screws. I'm so frustrated, I've had the boxes in my hallway for a week.
+A: Can I have your full name and order number or postcode? #C #V
+C: Priya Kowalski, order 726405.
+A: Thanks, Priya. I see the oak bookcase at €149.00. So the bookcase arrived but the bag of screws was missing? #V #U
+C: Yes, exactly.
+A: You'll need to return the whole bookcase and order it again. #R
+C: What? For some screws?
+A: That's the process. #C #L
+
+## T12 | cancel, wanted a size change | fail: V U C
+A: Good afternoon, Tidewell Home, Femke speaking. How can I help? #O
+C: Hi, I want to cancel an order I placed this morning. I ordered the wrong size by mistake and I'm a bit panicked about it.
+A: Order number. #C
+C: 903617.
+A: Okay, I've cancelled 903617 for the large duvet. #V
+C: Wait, no, I didn't want to cancel all of it. I just wanted to change the size to medium. That's what I meant.
+A: You said cancel. It's cancelled. You'll have to order the medium again yourself. #U #C
+C: Alright. And the money?
+A: The order hadn't been dispatched, so cancelling is free, and the €69.00 goes back to your card in 3 to 5 working days. #R
+C: Okay.
+A: You'll get a cancellation email in a few minutes. Is there anything else? #L
+C: No.
+A: Thank you for calling Tidewell. Goodbye. #L
+
+## T13 | duplicate charge, wrong amount | fail: O R
+A: Yeah, hello, how can I help? #O
+C: Hi, I've been charged twice for my order. It was €64.90 and I see it twice on my statement.
+A: Sorry about that, I know that's stressful to see on your statement. Could I take your full name and your order number or postcode? #C #V
+C: Mark Haddad, postcode 6511 PC.
+A: Thank you, Mark. I can see the order for a pair of cushions at €64.90, and two payments on the same day. So you need the second €64.90 back? #V #U
+C: Yes.
+A: I've refunded €46.90 to your card today. It'll show within 3 to 5 working days. #R
+C: Okay, great.
+A: You'll get a confirmation email shortly. Anything else I can help with? #L
+C: No, that's all.
+A: Thanks for calling, Mark, take care. #L
+
+## T14 | damaged, cheap item | fail: U P
+A: Good morning, thank you for calling Tidewell Home, my name is Ruud. How can I help? #O
+C: Hi Ruud, my vase arrived smashed. My name's Eva Rossi and the order number is 418576.
+A: I'm sorry, Eva, that's a horrible thing to unpack. Could you tell me your name and order number? #C #U
+C: Again? Eva Rossi, 418576.
+A: Thank you. I can see the glass vase at €19.95. I've sent a replacement today, it arrives in 2 to 4 working days, and as it's under €25 you don't need to send the broken one back. #V #R #P
+C: Oh good.
+A: Your tracking link will come by email tonight. Is there anything else I can help with? #L
+C: No, thanks.
+A: Thanks for calling Tidewell, Eva, bye for now. #L
+
+## T15 | lost parcel | fail: -
+A: Good afternoon, Tidewell Home, my name is Joost. How can I help you today? #O
+C: Hi Joost. My parcel is 11 working days late now and I'm really fed up.
+A: I'm really sorry, 11 days is far too long to wait, I'd be fed up too. Can I take your full name and order number or postcode? #C #V
+C: Tom Nguyen, order 560294.
+A: Thank you, Tom. I can see order 560294, a set of plates at €54.00, still in transit after 11 working days. So nothing has arrived at all? #V #U
+C: Nothing.
+A: Can I put you on hold for a minute while I check with the courier? #P
+C: Sure.
+A: Thank you for holding, Tom. The courier can't find it, so I've opened a lost parcel investigation. It closes within 5 working days, and then we send a replacement within 3 working days. #P #R
+C: Okay, at least something is happening.
+A: You'll get an email the day it closes. Is there anything else I can help with today? #L
+C: No, thank you.
+A: Thanks for your patience, Tom, have a good day. #L
+
+## T16 | return after 30 days | fail: C
+A: Good morning, Tidewell Home, my name is Lotte. How can I help? #O
+C: Hi Lotte, I want to return a chair. I've had it for 6 weeks and honestly I hate it, I'm really disappointed with it.
+A: Name and order number or postcode. #C #V
+C: Siobhan Meijer, order 287650.
+A: Okay, Siobhan. Chair, €95.00, delivered 41 days ago. You want to return it because you don't like it? #V #U
+C: Yes.
+A: Our return window is 30 days from delivery, so I can't accept a return now. #R
+C: Really? That's disappointing.
+A: Those are the rules. I'll email you this information today. Anything else? #C #L
+C: No.
+A: Thank you for calling Tidewell. Goodbye. #L
+
+## T17 | faulty on arrival | fail: O P L
+A: Hello? #O
+C: Hi, is this Tidewell? My toaster doesn't work. It arrived yesterday. My name is Niamh Willems, postcode 2513 AA.
+A: Yes. Thank you, Niamh, that matches your account. I'm sorry it doesn't work out of the box, that's disappointing. So the toaster arrived yesterday and doesn't turn on at all? #V #C #U
+C: Right, nothing.
+A: I'll refund the full €22.00 to your card, you'll see it within 5 working days. #R #P
+C: Okay. Do I need to send it back?
+A: No. #L
+C: Okay.
+A: Right then. #L
+
+## T18 | email change | fail: V L
+A: Good afternoon, thank you for calling Tidewell Home, Bram speaking. How can I help you? #O
+C: Hi Bram. I'd like to change the email address on my account, I don't use the old one any more.
+A: Sure, happy to help with that. What's the new email address? #V
+C: It's eva.smit@example.com.
+A: Done, I've updated the account to eva.smit@example.com. Your next order confirmation will go there. #V #U
+C: Great. And the order I placed yesterday, has it shipped?
+A: Yes, your lamp shipped this morning and arrives in 2 to 4 working days. #R
+C: Thanks.
+A: Okay then. #L
+
+## T19 | bank dispute, escalated | fail: -
+A: Good morning, Tidewell Home, my name is Femke. How can I help today? #O
+C: Hello Femke, I've disputed a payment to you with my bank, and I'm not happy about how this has gone.
+A: I'm sorry it got to that point, I can hear this has been a hassle. Could I take your full name and the order number or postcode? #C #V
+C: Tom Smit, order 639184.
+A: Thank you, Tom. I can see order 639184, a rug at €110.00. So you've opened a dispute with your bank about this payment? #V #U
+C: Yes, last week.
+A: Bank disputes are handled by our Payments team, so I've passed your case to them with all the details. They'll reply to you by email within 2 working days. #P #R
+C: Okay, as long as someone gets back to me.
+A: They will. You'll also get a case reference by email in the next hour. Is there anything else I can help you with? #L
+C: No, that's it.
+A: Thanks for calling Tidewell, Tom. Have a good day. #L
+
+## T20 | return inside window | fail: V U R
+A: Good afternoon, Tidewell Home, my name is Ruud. How can I help? #O
+C: Hi Ruud. I want to return a throw blanket, it's 20 days since delivery. The order is 371946.
+A: I can see the order, it's the wool throw at €59.00, delivered to 8 Oudegracht in Utrecht. #V
+C: That's right.
+A: What is it you'd like to do with it? #U
+C: I said, I want to return it.
+A: Sorry. Unfortunately our return window is 14 days, so it's too late to return it. #R
+C: Oh, that's a shame.
+A: I'm sorry I can't help more with this one. I'll email you our returns policy today. Is there anything else I can help with? #C #L
+C: No.
+A: Thanks for calling Tidewell. Goodbye. #L
+
+## T21 | lost parcel, angry caller | fail: O P C
+A: Tidewell. What's the issue? #O
+C: My parcel never arrived. It's been 12 working days and I'm absolutely furious, this is the second time.
+A: Name and order number or postcode. #C #V
+C: Ahmed Bakker, order 804257.
+A: Okay, Ahmed. Order 804257, a lamp at €44.50, in transit for 12 working days. So nothing at all has arrived? #V #U
+C: No.
+A: I'm putting you on hold. #P
+A: Right. I've opened a lost parcel investigation. It closes within 5 working days and then we send a replacement within 3 working days. #P #R
+C: Fine.
+A: You'll get an email when the investigation closes. Is there anything else I can help with? #L
+C: No.
+A: Thanks for calling Tidewell. Goodbye. #L
+
+## T22 | duplicate charge, asked again | fail: U L
+A: Good morning, thank you for calling Tidewell Home, my name is Joost. How can I help you today? #O
+C: Hi Joost, I've been charged twice for one order, €32.40 two times. My name is Niamh Dubois and my postcode is 3011 BD.
+A: I'm sorry about that, that's annoying to find. Thank you, Niamh, that matches the account. How much were you charged? #C #V #U
+C: I just told you, €32.40 twice.
+A: Sorry. Yes, I can see two payments of €32.40 for a pack of candles. I've refunded the duplicate payment of €32.40 today, and your bank will show it within 3 to 5 working days. #R
+C: Okay.
+A: Right. #L
+
+## T23 | wrong colour | fail: O V P
+A: Hi there. #O
+C: Hello, I ordered a blue rug and got a green one. The order is 158342.
+A: Okay, that's the rug at €79.00 going to 3 Vismarkt, Groningen? #V
+C: Yes.
+A: So you got a green rug instead of the blue one you ordered, and you'd like the blue one? #U
+C: Yes please. I'm a bit annoyed, I needed it for this weekend.
+A: I'm sorry, that's annoying with plans for the weekend. I've sent the blue rug today, it arrives in 2 to 4 working days. #C #R #P
+C: Great.
+A: You'll get a tracking email this evening. Is there anything else I can help you with? #L
+C: No, that's all.
+A: Thanks for calling Tidewell. Have a nice weekend. #L
+
+## T24 | refund status | fail: -
+A: Good afternoon, Tidewell Home, my name is Sanne. How can I help? #O
+C: Hi Sanne. I returned a pair of curtains and I'm wondering where my refund is.
+A: Of course, let me check that for you. Can I take your full name and your order number or postcode, please? #V
+C: Eva Dekker, order 692851.
+A: Thank you, Eva. I can see the curtains at €84.00. The return reached our warehouse yesterday. So you're asking when the €84.00 will be back on your card? #V #U
+C: Yes, exactly.
+A: Refunds are paid within 5 working days of the return arriving, so it will be on your card within 5 working days from yesterday. #R
+C: Okay, that's good.
+A: Can I put you on hold for a moment while I check the refund is queued? #P
+C: Yes, sure.
+A: Thank you for waiting. It's queued, and you'll get an email the day it's paid. Is there anything else I can help you with? #P #L
+C: No, thank you.
+A: Thank you for calling Tidewell, Eva. Have a lovely afternoon. #L
